@@ -5,18 +5,47 @@
 
 const po = require('./protractorPo.js'),
     po2 = require('./protractorPo2'),
-    page = new po(),
+    superP = require('./protractorSuperPo'),
+    page1 = new po(),
     page2 = new po2(),
+    superPage = new superP(),
     EC = protractor.ExpectedConditions;
+let page;
 
 describe('CDP Home Task - Protractor Framework Usage',() => {
 
     beforeAll(() => {
-        browser.get('https://www.moneysupermarket.com/car-insurance/?source=TIV');
+        browser.get('http://www.ci1-cms.gb.moneysupermarket.com/car-insurance/');
     });
 
     afterAll(() => {
         // browser.navigate().refresh();
+    });
+
+    beforeEach(() => {
+        return  browser.getCurrentUrl().then((url) => {
+            if (url.includes('high')) {
+                console.log('high');
+                return page = page1;
+            }
+            if (url.includes('about')) {
+                console.log('about');
+                return page = page2;
+            }
+            else {
+                console.log('other');
+                return page = superPage;
+            }
+        });
+    });
+
+    afterEach(() => {
+        //switching logic depends on page
+        return browser.getCurrentUrl().then((url) => {
+           if (url.includes('high')) {
+               return page2.continue.click();
+           }
+        });
     });
 
     xit('Open new tab', () => {
@@ -54,23 +83,50 @@ describe('CDP Home Task - Protractor Framework Usage',() => {
         expect(page.postcode.getAttribute('value')).toEqual('BB11BB');
     });
 
-    it('Mandatory fields filling of the HighImpactPage', () => {
-       page.getBrandNewQuote.click();
-       page2.postcode.sendKeys('BB1 1BB');
-       page2.carRegNumber.sendKeys('MF15MYC');
-       page2.addressSelectorFrankie.click();
-       page2.findCarButton.click();
-       page2.dayOfBirth.sendKeys('01');
-       page2.monthOfBirth.sendKeys('01');
-       page2.yearOfBirth.sendKeys('1980');
-       page2.howLongHeldLicenceYear3.click();
-       page2.howLongHeldLicenceMonths5.click();
-       page2.medicalConditionsFalse.click();
-       page2.drivingOtherCarsFalse.click();
-       page2.hadOffencesNo.click();
-       page2.yearsNoClaimsDiscount2.click();
-       page2.policyStartDateTomorrow.click();
-       page2.continue.click();
+    it('Mandatory fields filling on the LandingPage', () => {
+        browser.executeScript('window.scrollTo(0, 100)');
+        page.getBrandNewQuote.click();
+    });
+
+    it('Mandatory fields filling on the HighImpactPage', () => {
+       page.postcode.sendKeys('BB1 1BB');
+       page.carRegNumber.sendKeys('MF15MYC');
+       page.addressSelectorFrankie.click();
+       page.findCarButton.click();
+       page.dayOfBirth.sendKeys('01');
+       page.monthOfBirth.sendKeys('01');
+       page.yearOfBirth.sendKeys('1980');
+       page.howLongHeldLicenceYear3.click();
+       page.howLongHeldLicenceMonths5.click();
+       page.medicalConditionsFalse.click();
+       page.drivingOtherCarsFalse.click();
+       page.hadOffencesNo.click();
+       page.yearsNoClaimsDiscount2.click();
+       page.policyStartDateTomorrow.click();
+    });
+
+    it('Mandatory fields filling on the AboutTheCarPage', () => {
+        page.startDrivingCarMonth.click();
+        page.startDrivingCarYear.click();
+        page.areYouRegisteredKeeper.click();
+        page.milesPerYear.sendKeys(8000);
+        page.overnightLocation.click();
+        page.daytimeLocation.click();
+        page.policyHolderName.sendKeys("test");
+        page.policyHolderSurname.sendKeys("tester");
+        // page2.emailField.sendKeys("GENERATE");
+        // page2.confirmEmail.sendKeys("GENERATE");
+        // page2.passwordField.sendKeys("GENERATE");
+        // page2.confirmPassword.sendKeys("GENERATE");
+        // page.gender.click();
+        // page.maritalStatus.click();
+        // page.hasChildrenUnder16.click();
+        // page.homeOwner.click();
+        // page.occupationField.sendKeys("Xe");
+        // page.businessSectorField.sendKeys("Ed");
+        // page.rememberForNinetyDays.click();
+        // page.twoCompanyCallMe.click();
+        // browser.sleep(10000);
     });
 
 });

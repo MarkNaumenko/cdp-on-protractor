@@ -9,7 +9,7 @@ class protractorSuperPo extends Birth {
     constructor () {
         super();
         this.continue = element(by.css('button[class*="continue"]'));
-        // this.getBrandNewQuote = element(by.css('a.fancy-button--purple[data-ng-href*="new-journey"]'));
+        this.getBrandNewQuote = element(by.css('a.fancy-button--purple[data-ng-href*="new-journey"]')); //Landing Page
     }
 }
 

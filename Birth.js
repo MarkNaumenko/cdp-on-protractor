@@ -8,8 +8,12 @@ class Birth {
         this.birth = ''
     }
 
-    getOptionLabel(element, label) {
-        return `${element} option[label*='${label}']`;
+    getOptionLabel(element, value) {
+        return `${element} option[label*='${value}']`;
+    }
+
+    getLabelFor(element, value) {
+        return `${element} label[for*='${value}']`;
     }
 }
 
