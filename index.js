@@ -31,6 +31,8 @@ async function input(locator, text, time = 10000) {
 
 
     await driver.get('http://devvm/car-insurance/');
+    await driver.wait(until.elementLocated(page.knownRegnumberfalse), 10000);
+
     let tab;
         await driver.getAllWindowHandles().then((tabs) => {
         tab = tabs[0];
