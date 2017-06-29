@@ -13,14 +13,24 @@ exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
     framework: 'jasmine',
     multiCapabilities: [
-        {
-            browserName: 'chrome',
-            chromeOptions: {
-                args: ['--window-size=1800,900', '--disable-infobars']
-            }
+      {
+        browserName: 'chrome',
+        chromeOptions: {
+          args: ['--window-size=1800,900', '--disable-infobars']
         }
+      }, {
+        browserName: 'firefox',
+      }, {
+        name: 'mobile',
+        browserName: 'chrome',
+        chromeOptions: {
+          mobileEmulation: {
+            'deviceName': 'iPhone 5'
+          }
+        }
+      }
     ],
     specs: [
-        'spec.js'
+      'spec.js'
     ]
 };
