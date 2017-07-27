@@ -14,19 +14,9 @@ exports.config = {
     framework: 'jasmine',
     multiCapabilities: [
       {
-        browserName: 'chrome',
+        browserName: process.env.BROWSER,
         chromeOptions: {
-          args: ['--window-size=1800,900', '--disable-infobars']
-        }
-      }, {
-        browserName: 'firefox',
-      }, {
-        name: 'mobile',
-        browserName: 'chrome',
-        chromeOptions: {
-          mobileEmulation: {
-            'deviceName': 'iPhone 5'
-          }
+          args: [process.env.VIEW]
         }
       }
     ],

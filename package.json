@@ -10,9 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "child-process-promise": "^2.2.1",
     "chromedriver": "^2.29.2",
     "geckodriver": "^1.6.1",
+    "gulp": "^3.9.1",
+    "gulp-protractor": "^4.1.0",
     "protractor": "^5.1.2",
+    "run-sequence": "^2.1.0",
     "selenium-webdriver": "^3.4.0"
   }
 }
