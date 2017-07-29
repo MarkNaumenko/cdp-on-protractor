@@ -3,18 +3,16 @@
  */
 'use strict';
 
-class Birth {
-    constructor() {
-        this.birth = ''
-    }
+var Birth = function () {
+  this.birth = '';
+};
 
-    getOptionLabel(element, value) {
-        return `${element} option[label*='${value}']`;
-    }
+Birth.prototype.getOptionLabel = function(element, value) {
+  return `${element} option[label*='${value}']`;
+};
 
-    getLabelFor(element, value) {
-        return `${element} label[for*='${value}']`;
-    }
-}
+Birth.prototype.getLabelFor = function(element, value) {
+  return `${element} label[for*='${value}']`;
+};
 
 module.exports = Birth;
